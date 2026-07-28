@@ -112,46 +112,82 @@ Discount Factor
 
 ## Graphical Representation
 
-Write your answer here.
+<img width="1055" height="650" alt="image" src="https://github.com/user-attachments/assets/e35e16e2-3e82-4af2-8ab2-f5ca41eb8287" />
 
-Draw the MDP graph.
-
-The graph should include:
-
-1. States as nodes.
-2. Actions as arrows.
-3. Rewards on transitions.
-4. Transition probabilities if applicable.
-
-
----
 
 ## Python Representation
 
-Write your code here.
-
-Use Python dictionaries to represent the MDP.
-
-
-```python
-# MDP Representation using Python
-# print("Name:       ")
-# print("Register Number:     ")
-
+### MDP Representation using Python
+### Name : Guttha Keerthana
+### Register Number : 212223240045
 ```
----
+# States
+states = {
+    "S1": "Dry_Soil",
+    "S2": "Moist_Soil",
+    "S3": "Wet_Soil",
+    "S4": "Crop_Healthy",
+    "S5": "Crop_Stressed"
+}
+
+# Actions
+actions = {
+    "A1": "No_Irrigation",
+    "A2": "Light_Irrigation",
+    "A3": "Heavy_Irrigation",
+    "A4": "Delay_Irrigation"
+}
+
+# Transition Probabilities P(s' | s, a)
+transition_probabilities = {
+    ("Dry_Soil", "Light_Irrigation"): {
+        "Moist_Soil": 0.8,
+        "Dry_Soil": 0.2
+    },
+    ("Moist_Soil", "No_Irrigation"): {
+        "Dry_Soil": 0.6,
+        "Moist_Soil": 0.4
+    },
+    ("Moist_Soil", "Heavy_Irrigation"): {
+        "Wet_Soil": 1.0
+    },
+    ("Wet_Soil", "Delay_Irrigation"): {
+        "Crop_Healthy": 1.0
+    },
+    ("Dry_Soil", "No_Irrigation"): {
+        "Crop_Stressed": 1.0
+    }
+}
+
+# Reward Function R(s, a, s')
+rewards = {
+    ("Dry_Soil", "Light_Irrigation", "Moist_Soil"): 25,
+    ("Moist_Soil", "No_Irrigation", "Dry_Soil"): -5,
+    ("Moist_Soil", "Heavy_Irrigation", "Wet_Soil"): -20,
+    ("Wet_Soil", "Delay_Irrigation", "Crop_Healthy"): 15,
+    ("Dry_Soil", "No_Irrigation", "Crop_Stressed"): -40
+}
+
+# Discount Factor
+mdp = {
+    "States": states,
+    "Actions": actions,
+    "Transition_Probabilities": transition_probabilities,
+    "Rewards": rewards,
+    "Discount_Factor": 0.90
+}
+
+print("\nMDP Representation\n")
+
+for key, value in mdp.items():
+    print(f"{key}:")
+    print(value)
+    print()
+```
 ## Output
+<img width="1801" height="550" alt="image" src="https://github.com/user-attachments/assets/c6f8b9d9-8d43-4565-a92e-270bd928d97c" />
 
-Write your Python output here.
-
-
----
 
 ## Result
 
-Write your result here.
-
-
-
----
-
+The smart irrigation system was successfully represented as a Markov Decision Process by defining its states, actions, transition probabilities, reward function, and discount factor.
